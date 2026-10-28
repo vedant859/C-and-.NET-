@@ -1,0 +1,14 @@
+graph={"A":["B","C"],"B":["D"],"C":["D"],"D":[]}
+h={"A":3,"B":2,"C":1,"D":0}
+def best_first(start,goal):
+ q=[(h[start],start,[start])];seen=set()
+ while q:
+  _,node,path=heapq.heappop(q)
+  if node==goal:return path
+  if node in seen:continue
+  seen.add(node)
+  for nxt in graph[node]:
+   if nxt not in seen:heapq.heappush(q,(h[nxt],nxt,path+[nxt]))
+print("Path:",best_first("A","D"))
+
+Sample/result: Path: ['A', 'C', 'D']. Greedy search selects the smallest heuristic h(n).
