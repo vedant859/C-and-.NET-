@@ -1,0 +1,8 @@
+using System;
+class Program { static void Main(){
+ Console.Write("Enter number: ");int n=int.Parse(Console.ReadLine()!);bool p=n>=2;
+ for(int i=2;i*i<=n;i++)if(n%i==0){p=false;break;}
+ Console.WriteLine(p?"Prime number":"Not a prime number");
+}}
+
+Sample/result: Input 7 → Prime number.
