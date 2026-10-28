@@ -1,0 +1,19 @@
+import heapq
+g={"A":[("B",2),("C",4)],"B":[("D",5),("G",8)],"C":[("D",1),("G",7)],"D":[("G",2)],"G":[]}
+h={"A":5,"B":4,"C":3,"D":1,"G":0}
+def astar(start,goal):
+ q=[(h[start],0,start,[start])];best={start:0}
+ while q:
+  f,c,node,path=heapq.heappop(q)
+  if node==goal:return path,c
+  if c!=best[node]:continue
+  for nxt,w in g[node]:
+   nc=c+w
+   if nc<best.get(nxt,float("inf")):
+    best[nxt]=nc;heapq.heappush(q,(nc+h[nxt],nc,nxt,path+[nxt]))
+p,c=astar("A","G")
+print("A* path:",p,"cost:",c)
+print("Alternative A-B-G cost:",2+8)
+
+Sample/result: A-C-D-G cost 7; alternative A-B-G cost 10.
+
