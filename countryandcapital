@@ -1,0 +1,26 @@
+using System;
+using System.Drawing;
+using System.Windows.Forms;
+internal static class Program {
+    [STAThread] static void Main() {
+        ApplicationConfiguration.Initialize();
+        Application.Run(new MainForm());
+    }
+}
+public class MainForm : Form {
+    public MainForm() {
+        Text = "Practical Program"; Width = 420; Height = 300;
+        StartPosition = FormStartPosition.CenterScreen;
+
+        var combo=new ComboBox{Left=130,Top=22,Width=180,DropDownStyle=ComboBoxStyle.DropDownList};
+        combo.Items.AddRange(new object[]{"India","Japan","France","Australia","United Kingdom"}); combo.SelectedIndex=0;
+        var result=new Label{Text="",Left=20,Top=110,Width=350};
+        var capitals=new System.Collections.Generic.Dictionary<string,string>{
+            ["India"]="New Delhi",["Japan"]="Tokyo",["France"]="Paris",["Australia"]="Canberra",["United Kingdom"]="London"};
+        var b=new Button{Text="Show Capital",Left=130,Top=65,Width=120};
+        b.Click+=(s,e)=>result.Text="Capital: "+capitals[combo.SelectedItem!.ToString()!];
+        Controls.AddRange(new Control[]{new Label{Text="Select country:",Left=20,Top=25,Width=100},combo,b,result});
+    }
+}
+
+Sample/result: India → New Delhi; Japan → Tokyo.
