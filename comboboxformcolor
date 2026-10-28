@@ -1,0 +1,21 @@
+using System;
+using System.Drawing;
+using System.Windows.Forms;
+internal static class Program {
+    [STAThread] static void Main() {
+        ApplicationConfiguration.Initialize();
+        Application.Run(new MainForm());
+    }
+}
+public class MainForm : Form {
+    public MainForm() {
+        Text = "Practical Program"; Width = 420; Height = 300;
+        StartPosition = FormStartPosition.CenterScreen;
+
+        var combo=new ComboBox { Left=130, Top=22, Width=180, DropDownStyle=ComboBoxStyle.DropDownList };
+        combo.Items.AddRange(new object[]{"Red","Green","Blue","Yellow","Pink","White"}); combo.SelectedIndex=0;
+        var button=new Button { Text="Change Form Color", Left=100, Top=70, Width=170 };
+        button.Click += (s,e) => BackColor=Color.FromName(combo.SelectedItem!.ToString()!);
+        Controls.AddRange(new Control[]{new Label{Text="Choose a color:",Left=20,Top=25,Width=100},combo,button});
+    }
+}
