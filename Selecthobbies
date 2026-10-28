@@ -1,0 +1,29 @@
+using System;
+using System.Drawing;
+using System.Windows.Forms;
+internal static class Program {
+    [STAThread] static void Main() {
+        ApplicationConfiguration.Initialize();
+        Application.Run(new MainForm());
+    }
+}
+public class MainForm : Form {
+    public MainForm() {
+        Text = "Practical Program"; Width = 420; Height = 300;
+        StartPosition = FormStartPosition.CenterScreen;
+
+        var c1=new CheckBox{Text="Reading",Left=25,Top=50,Width=120};
+        var c2=new CheckBox{Text="Music",Left=25,Top=80,Width=120};
+        var c3=new CheckBox{Text="Sports",Left=25,Top=110,Width=120};
+        var c4=new CheckBox{Text="Traveling",Left=25,Top=140,Width=120};
+        var result=new Label{Text="",Left=20,Top=190,Width=350,Height=45};
+        var b=new Button{Text="Show Selected",Left=180,Top=50,Width=130};
+        b.Click+=(s,e)=>{var a=new System.Collections.Generic.List<string>();
+            if(c1.Checked)a.Add(c1.Text); if(c2.Checked)a.Add(c2.Text);
+            if(c3.Checked)a.Add(c3.Text); if(c4.Checked)a.Add(c4.Text);
+            result.Text=a.Count==0?"No hobby selected.":string.Join(", ",a);};
+        Controls.AddRange(new Control[]{new Label{Text="Select hobbies:",Left=20,Top=20,Width=150},c1,c2,c3,c4,b,result});
+    }
+}
+
+Sample/result: Tick hobbies and click Show Selected.
