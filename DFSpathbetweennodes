@@ -1,0 +1,13 @@
+graph={"A":["B","C"],"B":["D","E"],"C":["F"],"D":[],"E":["F"],"F":[]}
+def dfs(node,goal,seen=None):
+ if seen is None:seen=set()
+ seen.add(node)
+ if node==goal:return [node]
+ for nxt in graph[node]:
+  if nxt not in seen:
+   p=dfs(nxt,goal,seen)
+   if p:return [node]+p
+ return None
+print("Path:",dfs("A","F"))
+
+Sample/result: Path: ['A', 'B', 'E', 'F'].
