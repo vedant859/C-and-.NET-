@@ -1,0 +1,10 @@
+using System;
+class Program { static void Main(){
+ Console.Write("Enter non-negative integer: ");int n=int.Parse(Console.ReadLine()!);
+ if(n<0){Console.WriteLine("Invalid input");return;}
+ int digits=n==0?1:0,copy=n,sum=0;while(copy>0){digits++;copy/=10;}
+ copy=n;while(copy>0){int d=copy%10;sum+=(int)Math.Pow(d,digits);copy/=10;}
+ Console.WriteLine(sum==n?"Armstrong number":"Not an Armstrong number");
+}}
+
+Sample/result: Input 153 → Armstrong number.
