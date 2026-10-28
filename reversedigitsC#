@@ -1,0 +1,6 @@
+using System;
+class Program {
+ static void Rev(string s,int i){if(i<0)return;Console.Write(s[i]);Rev(s,i-1);}
+ static void Main(){Console.Write("Enter integer: ");string n=Console.ReadLine()!;
+  if(n.StartsWith("-")){Console.Write("-");n=n.Substring(1);} Rev(n,n.Length-1);Console.WriteLine();}
+}
