@@ -1,0 +1,23 @@
+using System;
+using System.Drawing;
+using System.Windows.Forms;
+internal static class Program {
+    [STAThread] static void Main() {
+        ApplicationConfiguration.Initialize();
+        Application.Run(new MainForm());
+    }
+}
+public class MainForm : Form {
+    public MainForm() {
+        Text = "Practical Program"; Width = 420; Height = 300;
+        StartPosition = FormStartPosition.CenterScreen;
+
+        var label=new Label{Text="Hello, Welcome!",Left=40,Top=45,AutoSize=true};
+        label.Font=new Font("Arial",12);
+        var bar=new TrackBar{Left=30,Top=100,Width=320,Minimum=8,Maximum=40,Value=12,TickFrequency=4};
+        bar.ValueChanged+=(s,e)=>label.Font=new Font(label.Font.FontFamily,bar.Value);
+        Controls.AddRange(new Control[]{label,bar});
+    }
+}
+
+Sample/result: Move the slider to change “Hello, Welcome!” font size.
