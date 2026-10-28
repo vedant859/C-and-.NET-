@@ -1,0 +1,9 @@
+interest=input("Interests (data/coding/people/design): ").lower()
+skills=input("Skills (analysis/programming/communication/creativity): ").lower()
+if "data" in interest or "analysis" in skills: print("Suggested career: Data Analyst")
+elif "coding" in interest or "programming" in skills: print("Suggested career: Software Developer")
+elif "people" in interest or "communication" in skills: print("Suggested career: HR / Recruiter")
+elif "design" in interest or "creativity" in skills: print("Suggested career: UI/UX Designer")
+else: print("Explore different careers and take an aptitude test.")
+
+Sample/result: Interests people + communication → HR / Recruiter.
