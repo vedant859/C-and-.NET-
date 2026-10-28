@@ -1,0 +1,8 @@
+using System;
+class Shape { public virtual double Area()=>0; }
+class Circle:Shape { double r; public Circle(double x){r=x;} public override double Area()=>Math.PI*r*r; }
+class Rectangle:Shape { double l,w; public Rectangle(double a,double b){l=a;w=b;} public override double Area()=>l*w; }
+class Program { static void Main(){
+ Shape s=new Circle(3);Console.WriteLine("Circle area = "+s.Area().ToString("F2"));
+ s=new Rectangle(4,5);Console.WriteLine("Rectangle area = "+s.Area());
+}}
