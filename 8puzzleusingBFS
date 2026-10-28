@@ -1,0 +1,17 @@
+from collections import deque
+start=(1,2,3,4,0,6,7,5,8); goal=(1,2,3,4,5,6,7,8,0)
+def next_states(s):
+ z=s.index(0); r,c=divmod(z,3)
+ for dr,dc,name in [(-1,0,"Up"),(1,0,"Down"),(0,-1,"Left"),(0,1,"Right")]:
+  nr,nc=r+dr,c+dc
+  if 0<=nr<3 and 0<=nc<3:
+   j=nr*3+nc; a=list(s); a[z],a[j]=a[j],a[z]
+   yield tuple(a),name
+q=deque([(start,[])]); seen={start}
+while q:
+ s,moves=q.popleft()
+ if s==goal: print("Moves:",moves); print("Count:",len(moves)); break
+ for ns,m in next_states(s):
+  if ns not in seen: seen.add(ns); q.append((ns,moves+[m]))
+
+Sample/result: Sample board solution: Down, Right. Change start/goal if your examiner supplies other states.
