@@ -1,0 +1,10 @@
+using System;
+class Program {
+ static void Main() {
+  Console.Write("Enter a non-negative integer: ");
+  int n=int.Parse(Console.ReadLine()!);
+  if(n<0 || n>20){Console.WriteLine("Enter 0 to 20.");return;}
+  long f=1; for(int i=1;i<=n;i++) f*=i;
+  Console.WriteLine("Factorial = "+f);
+ }
+}
