@@ -1,0 +1,11 @@
+from collections import deque
+caps=(4,3); start=(0,0); q=deque([(start,[start])]); seen={start}
+while q:
+ (a,b),path=q.popleft()
+ if a==2 or b==2:
+  print("States (4L, 3L):"); print(*path,sep="\\n"); break
+ x=min(a,3-b); y=min(b,4-a)
+ for s in {(4,b),(a,3),(0,b),(a,0),(a-x,b+x),(a+y,b-y)}:
+  if s not in seen: seen.add(s); q.append((s,path+[s]))
+
+Sample/result: Prints a valid state path ending with 2 litres.
