@@ -1,0 +1,26 @@
+using System;
+using System.Drawing;
+using System.Windows.Forms;
+internal static class Program {
+    [STAThread] static void Main() {
+        ApplicationConfiguration.Initialize();
+        Application.Run(new MainForm());
+    }
+}
+public class MainForm : Form {
+    public MainForm() {
+        Text = "Practical Program"; Width = 420; Height = 300;
+        StartPosition = FormStartPosition.CenterScreen;
+
+        var langs=new string[]{"Marathi","English","Hindi","Sanskrit","Tamil"};
+        var boxes=new CheckBox[langs.Length];
+        for(int i=0;i<langs.Length;i++){boxes[i]=new CheckBox{Text=langs[i],Left=25,Top=50+i*28,Width=130};Controls.Add(boxes[i]);}
+        var result=new Label{Text="",Left=20,Top=210,Width=350,Height=40};
+        var b=new Button{Text="Show Selected",Left=190,Top=50,Width=130};
+        b.Click+=(s,e)=>{var a=new System.Collections.Generic.List<string>();foreach(var c in boxes)if(c.Checked)a.Add(c.Text);
+            result.Text=a.Count==0?"No language selected.":string.Join(", ",a);};
+        Controls.AddRange(new Control[]{new Label{Text="Select languages:",Left=20,Top=20,Width=150},b,result});
+    }
+}
+
+Sample/result: Select languages and click Show Selected.
