@@ -1,0 +1,35 @@
+using System;
+using System.Drawing;
+using System.Windows.Forms;
+internal static class Program {
+    [STAThread] static void Main() {
+        ApplicationConfiguration.Initialize();
+        Application.Run(new MainForm());
+    }
+}
+public class MainForm : Form {
+    public MainForm() {
+        Text = "Practical Program"; Width = 420; Height = 300;
+        StartPosition = FormStartPosition.CenterScreen;
+
+        var t1 = new TextBox { Left=130, Top=22, Width=200 };
+        var t2 = new TextBox { Left=130, Top=57, Width=200 };
+        var result = new Label { Text="Result:", Left=20, Top=100, Width=350 };
+        Controls.AddRange(new Control[] {
+            new Label { Text="First number:", Left=20, Top=25, Width=100 }, t1,
+            new Label { Text="Second number:", Left=20, Top=60, Width=100 }, t2, result });
+        string[] ops={"+","-","*","/"};
+        int x=20;
+        foreach (string op in ops) {
+            var b=new Button { Text=op, Left=x, Top=140, Width=70 };
+            b.Click += (s,e) => {
+                if (!double.TryParse(t1.Text,out double a) || !double.TryParse(t2.Text,out double c))
+                { result.Text="Enter valid numbers."; return; }
+                if (op=="/" && c==0) { result.Text="Cannot divide by zero."; return; }
+                double ans=op=="+"?a+c:op=="-"?a-c:op=="*"?a*c:a/c;
+                result.Text="Result: "+ans;
+            };
+            Controls.Add(b); x+=85;
+        }
+    }
+}
