@@ -1,0 +1,15 @@
+# Neighbor cost values are sample data; lower is better.
+neighbors={"Route A":[("Route B",12),("Route C",8)],
+ "Route B":[("Route A",15),("Route D",6)],
+ "Route C":[("Route A",10),("Route D",5),("Route E",7)],
+ "Route D":[("Route B",9),("Route C",6)],"Route E":[("Route C",9)]}
+current,cost="Route A",10
+print("Start:",current,cost)
+while True:
+ better=[x for x in neighbors[current] if x[1]<cost]
+ if not better:break
+ current,cost=min(better,key=lambda x:x[1]);print("Move to:",current,cost)
+print("Final route:",current,"cost:",cost)
+
+Sample/result: Example moves Route A (10) → Route C (8) → Route D (5). Use the examiner’s costs if provided.
+
