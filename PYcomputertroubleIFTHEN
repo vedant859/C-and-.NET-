@@ -1,0 +1,9 @@
+problem=input("Problem (not starting / internet): ").lower()
+if "starting" in problem:
+ print("IF computer does not start THEN check power cable, socket and battery.")
+elif "internet" in problem:
+ print("IF internet fails THEN check Wi-Fi/router, reconnect and restart router.")
+else:
+ print("No matching rule. Restart the device or contact technical support.")
+
+Sample/result: Input internet → check Wi-Fi/router and restart router.
