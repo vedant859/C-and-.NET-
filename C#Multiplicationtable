@@ -1,0 +1,7 @@
+using System;
+class Program { static void Main() {
+ Console.Write("Enter a number: "); int n=int.Parse(Console.ReadLine()!);
+ for(int i=1;i<=10;i++) Console.WriteLine($"{n} x {i} = {n*i}");
+}}
+
+Sample/result: Input 5 → table from 5 x 1 to 5 x 10.
