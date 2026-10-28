@@ -1,0 +1,8 @@
+using System;
+using System.IO;
+class Program { static void Main(){
+ Console.Write("Enter file path: ");string path=Console.ReadLine()!;
+ try { string text; using(StreamReader r=new StreamReader(path)) text=r.ReadToEnd();
+  char[] a=text.ToCharArray();Array.Reverse(a);Console.WriteLine(new string(a)); }
+ catch(Exception ex){Console.WriteLine("Error: "+ex.Message);}
+}}
