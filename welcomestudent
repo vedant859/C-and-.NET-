@@ -1,0 +1,23 @@
+using System;
+using System.Drawing;
+using System.Windows.Forms;
+internal static class Program {
+    [STAThread] static void Main() {
+        ApplicationConfiguration.Initialize();
+        Application.Run(new MainForm());
+    }
+}
+public class MainForm : Form {
+    public MainForm() {
+        Text = "Practical Program"; Width = 420; Height = 300;
+        StartPosition = FormStartPosition.CenterScreen;
+
+        var name=new TextBox { Left=125, Top=22, Width=220 };
+        var result=new Label { Text="", Left=20, Top=105, Width=350 };
+        var button=new Button { Text="Welcome", Left=125, Top=60, Width=100 };
+        button.Click += (s,e)=>result.Text="Welcome, "+name.Text.Trim();
+        Controls.AddRange(new Control[]{new Label{Text="Student name:",Left=20,Top=25,Width=100},name,button,result});
+    }
+}
+
+Sample/result: Enter Sam → Welcome, Sam.
