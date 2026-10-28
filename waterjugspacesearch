@@ -1,0 +1,17 @@
+from collections import deque
+def solve(cap_a,cap_b,target):
+ start=(0,0);q=deque([(start,[start])]);seen={start}
+ while q:
+  (a,b),path=q.popleft()
+  if a==target or b==target:return path
+  x=min(a,cap_b-b);y=min(b,cap_a-a)
+  states=[(cap_a,b),(a,cap_b),(0,b),(a,0),(a-x,b+x),(a+y,b-y)]
+  for s in states:
+   if s not in seen:seen.add(s);q.append((s,path+[s]))
+ return None
+a=int(input("Capacity of jug A: "));b=int(input("Capacity of jug B: "));t=int(input("Target quantity: "))
+path=solve(a,b,t)
+if path:print("States (A, B):",*path,sep="\\n")
+else:print("Target cannot be measured.")
+
+Sample/result: Try capacities 4 and 3 with target 2.
